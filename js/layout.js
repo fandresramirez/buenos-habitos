@@ -110,8 +110,14 @@ function renderHeader() {
 }
 
 function renderFooter() {
-  const contenedor = document.getElementById("site-footer");
-  if (!contenedor) return;
+  // El pie se arma siempre desde este archivo: si en el HTML falta el contenedor
+  // (o alguien lo quito), se crea al final del <body>.
+  let contenedor = document.getElementById("site-footer");
+  if (!contenedor) {
+    contenedor = document.createElement("div");
+    contenedor.id = "site-footer";
+    document.body.appendChild(contenedor);
+  }
   const el = convertirAElementoSemantico(contenedor, "footer");
   el.classList.add("site-footer");
 
@@ -137,8 +143,30 @@ function renderFooter() {
   `;
 }
 
+/**
+ * El pie de pagina se regenera en cada carga y se vigila: si alguien lo borra
+ * o altera desde el codigo o las herramientas del navegador (por ejemplo quitar
+ * el credito), se vuelve a generar tal como esta definido en renderFooter().
+ */
+function vigilarFooter() {
+  let reparando = false;
+  const integro = () => {
+    const f = document.querySelector("footer.site-footer");
+    return f && f.querySelector(".footer__credito") && f.querySelector(".footer__copy");
+  };
+  const reparar = () => {
+    if (reparando || integro()) return;
+    reparando = true;
+    document.querySelectorAll("footer.site-footer").forEach((f) => f.remove());
+    renderFooter();
+    reparando = false;
+  };
+  new MutationObserver(reparar).observe(document.body, { childList: true, subtree: true });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   inyectarSpriteIconos();
   renderHeader();
   renderFooter();
+  vigilarFooter();
 });

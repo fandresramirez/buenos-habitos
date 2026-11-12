@@ -34,11 +34,9 @@ const IMAGE_SOURCES = {
   "marco-foto": "img/marco-foto.webp",
 
   // Galeria (8-12 fotos) — PENDIENTE: reemplazar por fotos reales del negocio.
-  "galeria-1": "img/galeria-1.webp",
   "galeria-2": "img/galeria-2.webp",
   "galeria-3": "img/galeria-3.webp",
   "galeria-4": "img/galeria-4.webp",
-  "galeria-5": "img/galeria-5.webp",
   "galeria-6": "img/galeria-6.webp",
   "galeria-7": "img/galeria-7.webp",
   "galeria-8": "img/galeria-8.webp",

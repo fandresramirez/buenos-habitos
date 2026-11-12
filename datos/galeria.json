@@ -1,14 +1,9 @@
 {
   "galeria": [
     {
-      "imagen": "img/galeria-1.webp",
-      "alt": "Marco con dos perros junto a un lago",
-      "grande": true
-    },
-    {
       "imagen": "img/galeria-2.webp",
       "alt": "Perro blanco sobre un tronco en el bosque",
-      "grande": false
+      "grande": true
     },
     {
       "imagen": "img/galeria-3.webp",
@@ -18,11 +13,6 @@
     {
       "imagen": "img/galeria-4.webp",
       "alt": "Clase con perro en la calle",
-      "grande": false
-    },
-    {
-      "imagen": "img/galeria-5.webp",
-      "alt": "Clase en una sala con una perrita",
       "grande": false
     },
     {
