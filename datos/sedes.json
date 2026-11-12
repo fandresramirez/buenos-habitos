@@ -1,0 +1,20 @@
+{
+  "sedes": [
+    {
+      "nombre": "Conocoto",
+      "servicios": "Hospedaje y estadía educativa",
+      "direccion": "Mariano Acosta y José Cuero y Caicedo, Quito (170806)",
+      "mapa_embed": "https://www.google.com/maps?q=Mariano+Acosta+y+Jos%C3%A9+Cuero+y+Caicedo%2C+Quito&output=embed",
+      "boton_maps": "https://maps.app.goo.gl/fWQad2ds5pnLeQj27",
+      "enlace_perfil": "https://maps.app.goo.gl/7fkU2oTUuiYA3ts38"
+    },
+    {
+      "nombre": "Bicentenario",
+      "servicios": "Hospedaje y guardería",
+      "direccion": "Jaime Chiriboga N50-107, Quito (170511)",
+      "mapa_embed": "https://www.google.com/maps?q=Jaime+Chiriboga+N50-107%2C+Quito&output=embed",
+      "boton_maps": "https://maps.app.goo.gl/U4T9AvUg3P87FCCj7",
+      "enlace_perfil": "https://maps.app.goo.gl/8S1tmcwHkS57bDqx7"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+# Material de trabajo (no va al repositorio)
+recursos/
+Perros/
+nuevasImagenes/
+logo/
+*.pdf
+*.docx
+*.mp4
+/*.png
+.DS_Store
+.claude/
+# Secretos y dependencias del backend
+backend/.env
+backend/node_modules/
+backend/
+deploy-server/

@@ -1,0 +1,19 @@
+{
+  "telefono_visible": "0987 444 999",
+  "whatsapp": "593987444999",
+  "whatsapp_mensaje": "Hola, quiero más información sobre sus servicios",
+  "correo": "info@buenoshabitos.com.ec",
+  "instagram": "https://www.instagram.com/buenoshabitoscaninos.ec",
+  "facebook": "https://www.facebook.com/buenoshabitoscaninos.ec/",
+  "tiktok": "https://www.tiktok.com/@buenoshabitoscaninos",
+  "hero_titulo_inicio": "Educación para una mejor convivencia con",
+  "hero_titulo_resaltado": "tu perro.",
+  "hero_lista": [
+    "Clases personalizadas a domicilio,",
+    "estadía educativa,",
+    "hospedaje y guardería canina,",
+    "en Quito y los Valles."
+  ],
+  "cta_titulo": "¿Quieres mejorar la convivencia con tu perro?",
+  "cta_texto": "Cuéntanos qué está pasando y te orientamos sobre cuál de nuestros servicios puede ayudarte."
+}

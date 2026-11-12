@@ -1,0 +1,48 @@
+{
+  "servicios": [
+    {
+      "id": "servicio-clases",
+      "color": "turquesa",
+      "icono": "house",
+      "imagen": "img/servicio-clases.webp",
+      "alt": "Marco dando una clase personalizada a domicilio",
+      "titulo": "Clases personalizadas a domicilio",
+      "texto": "Entrenamiento adaptado a tu perro y a las situaciones reales de tu hogar.",
+      "boton": "¡Agendar mi clase ya!",
+      "mensaje_whatsapp": "Hola, quiero agendar mi clase personalizada a domicilio"
+    },
+    {
+      "id": "servicio-estadia",
+      "color": "amarillo",
+      "icono": "sun",
+      "imagen": "img/servicio-estadia.webp",
+      "alt": "Perros durante su estadía educativa",
+      "titulo": "Estadía Educativa",
+      "texto": "Un proceso intensivo de educación durante dos semanas, con acompañamiento y trabajo estructurado.",
+      "boton": "Quiero más información",
+      "mensaje_whatsapp": "Hola, quiero más información sobre la Estadía Educativa"
+    },
+    {
+      "id": "servicio-hospedaje",
+      "color": "rosa",
+      "icono": "heart",
+      "imagen": "img/servicio-hospedaje.webp",
+      "alt": "Perros en el hospedaje y la guardería",
+      "titulo": "Hospedaje y Guardería",
+      "texto": "Cuidado de tu perro mientras tú trabajas, viajas o necesitas apoyo durante el día.",
+      "boton": "Necesito reservar para…",
+      "mensaje_whatsapp": "Hola, necesito reservar para…"
+    },
+    {
+      "id": "servicio-manada",
+      "color": "morado",
+      "icono": "paw",
+      "imagen": "img/servicio-manada.webp",
+      "alt": "Clase grupal Manada en Equilibrio",
+      "titulo": "Manada en Equilibrio",
+      "texto": "Clases grupales para trabajar educación, socialización y convivencia junto a otros perros.",
+      "boton": "¿Cuándo inicia?",
+      "mensaje_whatsapp": "Hola, ¿cuándo inicia Manada en Equilibrio?"
+    }
+  ]
+}

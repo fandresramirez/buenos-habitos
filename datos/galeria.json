@@ -1,0 +1,64 @@
+{
+  "galeria": [
+    {
+      "imagen": "img/galeria-1.webp",
+      "alt": "Marco con dos perros junto a un lago",
+      "grande": true
+    },
+    {
+      "imagen": "img/galeria-2.webp",
+      "alt": "Perro blanco sobre un tronco en el bosque",
+      "grande": false
+    },
+    {
+      "imagen": "img/galeria-3.webp",
+      "alt": "Marco con un perro mojado frente a un mural",
+      "grande": false
+    },
+    {
+      "imagen": "img/galeria-4.webp",
+      "alt": "Clase con perro en la calle",
+      "grande": false
+    },
+    {
+      "imagen": "img/galeria-5.webp",
+      "alt": "Clase en una sala con una perrita",
+      "grande": false
+    },
+    {
+      "imagen": "img/galeria-6.webp",
+      "alt": "Clase en casa con un perro pequeño",
+      "grande": false
+    },
+    {
+      "imagen": "img/galeria-7.webp",
+      "alt": "Marco y su alumna con certificado",
+      "grande": false
+    },
+    {
+      "imagen": "img/galeria-8.webp",
+      "alt": "Clase al aire libre con certificado",
+      "grande": false
+    },
+    {
+      "imagen": "img/galeria-9.webp",
+      "alt": "Perros jugando en el campus",
+      "grande": false
+    },
+    {
+      "imagen": "img/galeria-10.webp",
+      "alt": "Clase en el jardín",
+      "grande": false
+    },
+    {
+      "imagen": "img/galeria-11.webp",
+      "alt": "Perros del hospedaje",
+      "grande": false
+    },
+    {
+      "imagen": "img/galeria-12.webp",
+      "alt": "Marco en una clase a domicilio",
+      "grande": false
+    }
+  ]
+}

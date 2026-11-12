@@ -1,0 +1,168 @@
+# ============================================================================
+# Panel de administración de Buenos Hábitos Caninos
+# ----------------------------------------------------------------------------
+# Los cambios que se hagan aquí se guardan en el repositorio de GitHub.
+# El sitio publicado los toma solo (js/datos.js), sin volver a subir nada.
+# ============================================================================
+
+backend:
+  name: github
+  repo: fandresramirez/buenos-habitos
+  branch: main
+  commit_messages:
+    create: 'Agrega {{collection}} “{{slug}}”'
+    update: 'Actualiza {{collection}} “{{slug}}”'
+    delete: 'Elimina {{collection}} “{{slug}}”'
+    uploadMedia: 'Sube imagen {{path}}'
+    deleteMedia: 'Elimina imagen {{path}}'
+
+media_folder: img/fotos
+public_folder: img/fotos
+
+locale: es
+site_url: https://bh.freak-design.com
+logo_url: /img/logo-icono.png
+
+collections:
+  # ------------------------------------------------------------- reseñas
+  - name: resenas
+    label: Reseñas
+    description: Opiniones de Google que se muestran en "Resultados / testimonios".
+    files:
+      - name: lista
+        label: Reseñas de clientes
+        file: datos/resenas.json
+        fields:
+          - { name: limite_palabras, label: Palabras antes de "Ver más", widget: number, value_type: int, min: 10, max: 200, default: 35, hint: 'Si una reseña tiene más palabras que este número, se corta y aparece el botón "Ver más".' }
+          - { name: enlace_mas, label: Enlace de "Ver más experiencias", widget: string, hint: 'Normalmente la página de Google con todas las opiniones.' }
+          - name: resenas
+            label: Reseñas
+            label_singular: reseña
+            widget: list
+            summary: '{{fields.nombre}} — {{fields.estrellas}}★'
+            fields:
+              - { name: nombre, label: Nombre, widget: string }
+              - { name: estrellas, label: Estrellas, widget: number, value_type: int, min: 1, max: 5, default: 5 }
+              - { name: texto, label: Lo que dijo, widget: text }
+
+  # --------------------------------------------- ¿En qué podemos ayudarte?
+  - name: problemas
+    label: ¿En qué podemos ayudarte?
+    description: Tarjetas con foto. Al tocarlas se despliega la descripción y un botón al formulario.
+    files:
+      - name: lista
+        label: Tarjetas de problemas
+        file: datos/problemas.json
+        fields:
+          - name: problemas
+            label: Problemas
+            label_singular: problema
+            widget: list
+            summary: '{{fields.titulo}}'
+            fields:
+              - { name: titulo, label: Título corto, widget: string, hint: 'Por ejemplo: Tira de la correa' }
+              - { name: descripcion, label: Descripción que se despliega, widget: text, hint: 'Escrita como pregunta al dueño: “¿Te pasa que…?”' }
+              - { name: imagen, label: Foto, widget: image }
+              - { name: alt, label: Descripción de la foto (accesibilidad), widget: string, required: false }
+
+  # ------------------------------------------------------------ servicios
+  - name: servicios
+    label: Servicios
+    files:
+      - name: lista
+        label: Tarjetas de servicios
+        file: datos/servicios.json
+        fields:
+          - name: servicios
+            label: Servicios
+            label_singular: servicio
+            widget: list
+            summary: '{{fields.titulo}}'
+            fields:
+              - { name: id, label: Identificador (no cambiar), widget: string }
+              - { name: titulo, label: Nombre del servicio, widget: string }
+              - { name: texto, label: Descripción, widget: text }
+              - { name: imagen, label: Foto, widget: image }
+              - { name: alt, label: Descripción de la foto (accesibilidad), widget: string, required: false }
+              - { name: boton, label: Texto del botón, widget: string }
+              - { name: mensaje_whatsapp, label: Mensaje que se envía por WhatsApp al pulsar el botón, widget: string }
+              - { name: color, label: Color de la tarjeta, widget: select, options: ['turquesa', 'amarillo', 'rosa', 'morado'] }
+              - { name: icono, label: Icono, widget: select, options: ['house', 'sun', 'heart', 'paw', 'people', 'star', 'chat'] }
+
+  # -------------------------------------------------------------- galería
+  - name: galeria
+    label: Galería
+    files:
+      - name: lista
+        label: Fotos de la galería
+        file: datos/galeria.json
+        fields:
+          - name: galeria
+            label: Fotografías
+            label_singular: foto
+            widget: list
+            summary: '{{fields.alt}}'
+            hint: 'La primera foto marcada como "grande" ocupa un espacio doble. Se recomienda una sola.'
+            fields:
+              - { name: imagen, label: Foto, widget: image }
+              - { name: alt, label: Descripción de la foto, widget: string }
+              - { name: grande, label: Mostrar en tamaño grande, widget: boolean, default: false }
+
+  # ------------------------------------------------------------------ FAQ
+  - name: faq
+    label: Preguntas frecuentes
+    files:
+      - name: lista
+        label: Preguntas y respuestas
+        file: datos/faq.json
+        fields:
+          - name: faq
+            label: Preguntas
+            label_singular: pregunta
+            widget: list
+            summary: '{{fields.pregunta}}'
+            fields:
+              - { name: pregunta, label: Pregunta, widget: string }
+              - { name: respuesta, label: Respuesta, widget: text, hint: 'Separa los párrafos con una línea en blanco. Para una lista, empieza cada línea con "- ".' }
+
+  # ---------------------------------------------------------------- sedes
+  - name: sedes
+    label: Sedes y mapas
+    files:
+      - name: lista
+        label: Sedes
+        file: datos/sedes.json
+        fields:
+          - name: sedes
+            label: Sedes
+            label_singular: sede
+            widget: list
+            summary: '{{fields.nombre}}'
+            fields:
+              - { name: nombre, label: Nombre de la sede, widget: string }
+              - { name: servicios, label: Servicios que se ofrecen, widget: string }
+              - { name: direccion, label: Dirección, widget: string }
+              - { name: mapa_embed, label: Enlace del mapa incrustado, widget: string, hint: 'En Google Maps: Compartir → Incorporar un mapa → copiar solo la dirección que está en src="…".' }
+              - { name: boton_maps, label: Enlace del botón "Abrir en Maps", widget: string, hint: 'El enlace corto al perfil de la empresa en Google Maps.' }
+              - { name: enlace_perfil, label: Enlace de "Ver en Google Maps", widget: string }
+
+  # ------------------------------------------------------ datos generales
+  - name: sitio
+    label: Datos generales
+    files:
+      - name: general
+        label: Contacto, redes y textos principales
+        file: datos/sitio.json
+        fields:
+          - { name: telefono_visible, label: Teléfono que se muestra, widget: string, hint: 'Ejemplo: 0987 444 999' }
+          - { name: whatsapp, label: Número de WhatsApp (con código de país, sin + ni espacios), widget: string, hint: 'Ejemplo: 593987444999' }
+          - { name: whatsapp_mensaje, label: Mensaje inicial de WhatsApp, widget: string }
+          - { name: correo, label: Correo de contacto, widget: string }
+          - { name: instagram, label: Instagram (enlace), widget: string }
+          - { name: facebook, label: Facebook (enlace), widget: string }
+          - { name: tiktok, label: TikTok (enlace), widget: string }
+          - { name: hero_titulo_inicio, label: Título principal (parte normal), widget: string }
+          - { name: hero_titulo_resaltado, label: Título principal (parte subrayada), widget: string }
+          - { name: hero_lista, label: Líneas bajo el título, widget: list, field: { name: linea, label: Línea, widget: string } }
+          - { name: cta_titulo, label: Título de la sección de contacto, widget: string }
+          - { name: cta_texto, label: Texto de la sección de contacto, widget: text }

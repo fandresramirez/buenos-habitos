@@ -1,0 +1,46 @@
+{
+  "problemas": [
+    {
+      "titulo": "No me hace caso",
+      "descripcion": "¿Le hablas y parece que no te escucha? Das la orden, la repites, y aun así hace lo que quiere, como si no existieran reglas en casa. Te enseñamos a comunicarte de forma clara para que tu perro te preste atención y responda.",
+      "imagen": "img/problema-no-hace-caso.webp",
+      "alt": "Perro que no hace caso a su dueño"
+    },
+    {
+      "titulo": "Tira de la correa",
+      "descripcion": "¿Sacas a pasear a tu perro y es él quien te pasea a ti? Jalones, brazos adoloridos y paseos que ya no disfrutas. Trabajamos contigo para que caminar juntos sea tranquilo y agradable.",
+      "imagen": "img/problema-tira-correa.webp",
+      "alt": "Perro tirando de la correa en un paseo"
+    },
+    {
+      "titulo": "Salta sobre las personas",
+      "descripcion": "¿Cada vez que llega una visita tu perro salta, empuja y no se calma? Te ayudamos a enseñarle a saludar con tranquilidad, sin saltar sobre ti ni sobre los demás.",
+      "imagen": "img/problema-salta-personas.webp",
+      "alt": "Perro saltando sobre las personas"
+    },
+    {
+      "titulo": "Destruye cosas en casa",
+      "descripcion": "¿Llegas y encuentras zapatos, muebles o cojines mordidos? Tu perro necesita aprender qué puede morder y cuáles son sus límites. Te enseñamos cómo lograrlo en el día a día.",
+      "imagen": "img/problema-destruye-cosas.webp",
+      "alt": "Perro que destruye cosas en casa"
+    },
+    {
+      "titulo": "Ladra demasiado",
+      "descripcion": "¿Ladra ante cada ruido, cada timbre o cada persona que pasa? Entender por qué ladra es el primer paso: te guiamos para que aprenda a calmarse y a escucharte.",
+      "imagen": "img/problema-ladra.webp",
+      "alt": "Perro que ladra demasiado"
+    },
+    {
+      "titulo": "Se queda solo (ansiedad)",
+      "descripcion": "¿Se angustia, llora, ladra o rompe cosas cuando te vas? Aprender a quedarse solo se puede trabajar poco a poco. Te acompañamos para que tú y tu perro estén más tranquilos.",
+      "imagen": "img/problema-ansiedad.webp",
+      "alt": "Perro con ansiedad al quedarse solo"
+    },
+    {
+      "titulo": "Crianza de cachorros",
+      "descripcion": "¿Acaba de llegar un cachorro a tu casa? Pipí por todos lados, mordidas y mucha energía. Desde el inicio te orientamos para construir buenos hábitos y una convivencia feliz.",
+      "imagen": "img/problema-crianza.webp",
+      "alt": "Cachorro en etapa de crianza"
+    }
+  ]
+}
