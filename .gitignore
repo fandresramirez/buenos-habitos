@@ -14,3 +14,4 @@ backend/.env
 backend/node_modules/
 backend/
 deploy-server/
+.git-respaldo/
