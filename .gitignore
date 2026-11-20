@@ -15,3 +15,5 @@ backend/node_modules/
 backend/
 deploy-server/
 .git-respaldo/
+entrega-cliente/
+entrega-cliente.zip

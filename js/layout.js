@@ -139,7 +139,7 @@ function renderFooter() {
       </div>
     </div>
     <p class="footer__base">Hábitos diarios, perros extraordinarios.</p>
-    <p class="footer__copy">© ${new Date().getFullYear()} Buenos Hábitos Caninos. Todos los derechos reservados. - <a class="footer__legal" href="${base}privacidad.html">Política de Privacidad</a> - <a class="footer__credito" href="https://freak-design.com" target="_blank" rel="noopener">freak-design.com</a></p>
+    <p class="footer__copy">© ${new Date().getFullYear()} Buenos Hábitos Caninos. Todos los derechos reservados. - <a class="footer__legal" href="${base}privacidad.html">Política de Privacidad</a> - Diseño: <a class="footer__credito" href="https://freak-design.com" target="_blank" rel="noopener">freak-design.com</a></p>
   `;
 }
 
