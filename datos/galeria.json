@@ -53,7 +53,7 @@
     {
       "imagen": "/img/fotos/Edit 1.png",
       "alt": "test",
-      "grande": true
+      "grande": false
     }
   ]
 }
