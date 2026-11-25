@@ -1,6 +1,7 @@
 /**
  * Envio del formulario de contacto (seccion CTA / WhatsApp).
- * Hace POST a /api/contacto, servido por un pequeno backend Node propio
+ * Hace POST a /api/contacto (o a la URL de data-api en <html>, para cuando el sitio
+ * vive en otro hosting y el backend esta en el servidor de Freak Design), servido por un pequeno backend Node propio
  * (Express + Nodemailer) que reenvia el mensaje por correo. No hay
  * almacenamiento ni envio en el propio navegador: si el backend no
  * responde, se le sugiere al visitante escribir por WhatsApp en su lugar.
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     estado.textContent = "Enviando...";
 
     try {
-      const respuesta = await fetch("/api/contacto", {
+      const respuesta = await fetch(document.documentElement.getAttribute("data-api") || "/api/contacto", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datos),
