@@ -1,11 +1,12 @@
 /**
- * Envio del formulario de contacto (seccion CTA / WhatsApp).
- * Hace POST a /api/contacto (o a la URL de data-api en <html>, para cuando el sitio
- * vive en otro hosting y el backend esta en el servidor de Freak Design), servido por un pequeno backend Node propio
- * (Express + Nodemailer) que reenvia el mensaje por correo. No hay
- * almacenamiento ni envio en el propio navegador: si el backend no
- * responde, se le sugiere al visitante escribir por WhatsApp en su lugar.
+ * Envio del formulario de contacto (seccion CTA / WhatsApp) via Web3Forms.
+ * Web3Forms reenvia cada mensaje al correo con el que se creo la clave de
+ * acceso (data-web3forms en el <form>). Esa clave es publica por diseno: solo
+ * permite enviar a ese correo. No hay backend propio ni se guarda nada aqui.
+ * Si el envio falla, se sugiere al visitante escribir por WhatsApp.
  */
+const WEB3FORMS_URL = "https://api.web3forms.com/submit";
+
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("form-contacto");
   if (!form) return;
@@ -35,13 +36,24 @@ document.addEventListener("DOMContentLoaded", () => {
     estado.textContent = "Enviando...";
 
     try {
-      const respuesta = await fetch(document.documentElement.getAttribute("data-api") || "/api/contacto", {
+      const respuesta = await fetch(WEB3FORMS_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(datos),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: form.dataset.web3forms,
+          subject: `Buenos Hábitos — nuevo contacto de ${datos.nombre}`,
+          from_name: "Sitio web Buenos Hábitos",
+          botcheck: form.botcheck.checked,
+          email: datos.correo, // Web3Forms lo usa como "responder a"
+          "Nombre": datos.nombre,
+          "Teléfono / WhatsApp": datos.telefono,
+          "Edad del perro": datos.edad,
+          "Mensaje": datos.mensaje,
+        }),
       });
 
-      if (!respuesta.ok) throw new Error("respuesta no ok");
+      const resultado = await respuesta.json().catch(() => ({}));
+      if (!respuesta.ok || !resultado.success) throw new Error("envio no aceptado");
 
       estado.dataset.estado = "ok";
       estado.textContent = "¡Listo! Te contactaremos muy pronto.";
