@@ -1,12 +1,11 @@
 /**
- * Envio del formulario de contacto (seccion CTA / WhatsApp) via Web3Forms.
- * Web3Forms reenvia cada mensaje al correo con el que se creo la clave de
- * acceso (data-web3forms en el <form>). Esa clave es publica por diseno: solo
- * permite enviar a ese correo. No hay backend propio ni se guarda nada aqui.
- * Si el envio falla, se sugiere al visitante escribir por WhatsApp.
+ * Envio del formulario de contacto (seccion CTA / WhatsApp) via FormSubmit.
+ * El destino va en data-formsubmit del <form>: el correo del cliente o, una vez
+ * activado, el identificador aleatorio que entrega FormSubmit (para no dejar el
+ * correo visible en el codigo). El primer envio a un correo nuevo no llega como
+ * mensaje: FormSubmit manda un enlace de activacion a ese correo.
+ * No hay backend propio ni se guarda nada aqui. Si falla, se sugiere WhatsApp.
  */
-const WEB3FORMS_URL = "https://api.web3forms.com/submit";
-
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("form-contacto");
   if (!form) return;
@@ -36,15 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
     estado.textContent = "Enviando...";
 
     try {
-      const respuesta = await fetch(WEB3FORMS_URL, {
+      const respuesta = await fetch("https://formsubmit.co/ajax/" + form.dataset.formsubmit, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: form.dataset.web3forms,
-          subject: `Buenos Hábitos — nuevo contacto de ${datos.nombre}`,
-          from_name: "Sitio web Buenos Hábitos",
-          botcheck: form.botcheck.checked,
-          email: datos.correo, // Web3Forms lo usa como "responder a"
+          _subject: `Buenos Hábitos — nuevo contacto de ${datos.nombre}`,
+          _template: "table",
+          _honey: form._honey.value, // trampa anti-spam: si trae algo, FormSubmit lo descarta
+          email: datos.correo, // FormSubmit lo usa como "responder a"
           "Nombre": datos.nombre,
           "Teléfono / WhatsApp": datos.telefono,
           "Edad del perro": datos.edad,
@@ -53,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const resultado = await respuesta.json().catch(() => ({}));
-      if (!respuesta.ok || !resultado.success) throw new Error("envio no aceptado");
+      if (!respuesta.ok || String(resultado.success) !== "true") throw new Error("envio no aceptado");
 
       estado.dataset.estado = "ok";
       estado.textContent = "¡Listo! Te contactaremos muy pronto.";

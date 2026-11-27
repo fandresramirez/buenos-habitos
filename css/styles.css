@@ -1000,5 +1000,5 @@ p { max-width: 62ch; }
 /* Servicios: Marco centrado en la foto de la estadia */
 #servicio-estadia .servicio__foto img { object-position: 78% 28%; transform: scale(1.18); transform-origin: 78% 28%; }
 
-/* Trampa anti-spam de Web3Forms: invisible para personas */
+/* Trampa anti-spam del formulario: invisible para personas */
 .oculto-bot { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
