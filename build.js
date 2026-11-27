@@ -11,6 +11,7 @@ const R = require("./js/renderers.js");
 
 const RAIZ = __dirname;
 const leer = (n) => JSON.parse(fs.readFileSync(path.join(RAIZ, "datos", n + ".json"), "utf8"));
+const PAGINAS = ["index.html", "privacidad.html"];
 const archivoIndex = path.join(RAIZ, "index.html");
 let html = fs.readFileSync(archivoIndex, "utf8");
 
@@ -20,12 +21,16 @@ const ctx = { medios, sitio };
 const cache = {};
 
 let total = 0;
-for (const [nombre, fn] of Object.entries(R.bloques)) {
-  const datos = cache[R.ARCHIVO[nombre]] || (cache[R.ARCHIVO[nombre]] = leer(R.ARCHIVO[nombre]));
-  const re = new RegExp('(data-bloque="' + nombre + '"[^>]*>)<!--bloque-->[\\s\\S]*?<!--/bloque-->');
-  if (!re.test(html)) { console.warn("Aviso: no encuentro el bloque", nombre); continue; }
-  html = html.replace(re, (_, abre) => abre + "<!--bloque-->\n" + fn(datos, ctx) + "\n<!--/bloque-->");
-  total++;
+for (const pagina of PAGINAS) {
+  const archivo = path.join(RAIZ, pagina);
+  let contenido = fs.readFileSync(archivo, "utf8");
+  for (const [nombre, fn] of Object.entries(R.bloques)) {
+    const re = new RegExp('(data-bloque="' + nombre + '"[^>]*>)<!--bloque-->[\\s\\S]*?<!--/bloque-->');
+    if (!re.test(contenido)) continue;
+    const datos = cache[R.ARCHIVO[nombre]] || (cache[R.ARCHIVO[nombre]] = leer(R.ARCHIVO[nombre]));
+    contenido = contenido.replace(re, (_, abre) => abre + "<!--bloque-->\n" + fn(datos, ctx) + "\n<!--/bloque-->");
+    total++;
+  }
+  fs.writeFileSync(archivo, contenido);
 }
-fs.writeFileSync(archivoIndex, html);
-console.log("Listo:", total, "bloques regenerados en index.html");
+console.log("Listo:", total, "bloques regenerados en", PAGINAS.join(" y "));

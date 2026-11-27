@@ -12,7 +12,7 @@
   const MEDIOS = raiz.getAttribute("data-medios") || "";
   if (!BASE || !window.BHRender) return;
   const R = window.BHRender;
-  const ARCHIVOS = ["sitio", "problemas", "servicios", "resenas", "galeria", "faq", "sedes"];
+  const ARCHIVOS = ["sitio", "problemas", "servicios", "resenas", "galeria", "faq", "sedes", "privacidad"];
 
   Promise.all(ARCHIVOS.map((n) =>
     fetch(BASE + "datos/" + n + ".json", { cache: "no-cache" })

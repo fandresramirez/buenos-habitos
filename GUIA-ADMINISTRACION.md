@@ -18,7 +18,7 @@ tocar el servidor: todo se hace desde una pantalla con formularios.
 
 ## Qué se puede cambiar
 
-En el menú de la izquierda hay siete secciones:
+En el menú de la izquierda hay ocho secciones:
 
 - **Reseñas** — agregar, quitar o editar las opiniones (nombre, estrellas y texto).
   También se define **cuántas palabras se muestran antes del botón "Ver más"**
@@ -35,6 +35,10 @@ En el menú de la izquierda hay siete secciones:
 - **Sedes y mapas** — dirección, servicios y enlaces de cada sede. Para el mapa
   incrustado: en Google Maps → *Compartir → Incorporar un mapa* → copiar solo lo
   que está dentro de `src="…"`.
+- **Política de privacidad** — el texto completo de la página de privacidad. Cada
+  sección empieza con `## ` seguido del título (por ejemplo `## 3. Finalidades`).
+  Separa los párrafos con una línea en blanco y usa `- ` para las listas.
+  **Cualquier cambio aquí tiene efecto legal: conviene que lo revise un abogado.**
 - **Datos generales** — teléfono, WhatsApp, correo, redes sociales, el título
   principal de la portada y el texto de la sección de contacto.
 
@@ -63,8 +67,7 @@ Estas cosas necesitan a Freak Design porque cambian la estructura del sitio:
 - Cambiar el **diseño**, los colores o el orden de las secciones
 - Agregar **secciones nuevas**
 - Cambiar las fotos del encabezado, de "Conoce a Marco" y de "¿Por qué Buenos Hábitos?"
-- Editar la **Política de Privacidad**
-- Cambiar a **dónde llegan los mensajes del formulario** (hoy: buenoshabitos.uio@gmail.com)
+- Cambiar a **dónde llegan los mensajes del formulario** (hoy: buenoshabitos.uio@gmail.com, mediante FormSubmit)
 
 ---
 

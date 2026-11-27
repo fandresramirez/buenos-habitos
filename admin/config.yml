@@ -166,3 +166,15 @@ collections:
           - { name: hero_lista, label: Líneas bajo el título, widget: list, field: { name: linea, label: Línea, widget: string } }
           - { name: cta_titulo, label: Título de la sección de contacto, widget: string }
           - { name: cta_texto, label: Texto de la sección de contacto, widget: text }
+
+  # --------------------------------------------------- política de privacidad
+  - name: privacidad
+    label: Política de privacidad
+    files:
+      - name: texto
+        label: Política de Privacidad y Tratamiento de datos personales
+        file: datos/privacidad.json
+        fields:
+          - { name: titulo, label: Título de la página, widget: string }
+          - { name: nota, label: Nota inicial (opcional), widget: string, required: false, hint: 'Se muestra en cursiva debajo del título. Bórrala cuando la política esté revisada.' }
+          - { name: contenido, label: Texto de la política, widget: text, hint: 'Cada sección empieza con "## " (por ejemplo "## 1. Responsable del tratamiento"). Separa los párrafos con una línea en blanco; para una lista, empieza cada línea con "- ". Los correos se convierten solos en enlaces.' }

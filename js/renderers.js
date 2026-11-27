@@ -26,13 +26,17 @@
     return "https://wa.me/" + num + (mensaje ? "?text=" + encodeURIComponent(mensaje) : "");
   }
 
-  /** Mini-markdown: parrafos separados por linea en blanco, listas con "- ", **negrita**. */
-  function md(texto) {
-    const inline = (t) => esc(t).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  /** Mini-markdown: parrafos separados por linea en blanco, "## " titulos, listas con "- ",
+   *  **negrita**, y los correos se vuelven enlaces mailto. */
+  function md(texto, claseLista) {
+    const inline = (t) => esc(t)
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      .replace(/([\w.+-]+@[\w-]+(\.[\w-]+)+)/g, '<a href="mailto:$1">$1</a>');
     return String(texto || "").split(/\n\s*\n/).map((b) => {
       const lineas = b.trim().split("\n");
+      if (lineas.length === 1 && /^##\s+/.test(lineas[0])) return "<h2>" + inline(lineas[0].replace(/^##\s+/, "")) + "</h2>";
       if (lineas.every((l) => /^\s*[-*] /.test(l))) {
-        return '<ul class="faq__lista">' + lineas.map((l) => "<li>" + inline(l.replace(/^\s*[-*] /, "")) + "</li>").join("") + "</ul>";
+        return "<ul" + (claseLista === undefined ? ' class="faq__lista"' : claseLista) + ">" + lineas.map((l) => "<li>" + inline(l.replace(/^\s*[-*] /, "")) + "</li>").join("") + "</ul>";
       }
       return "<p>" + inline(lineas.join(" ")) + "</p>";
     }).join("");
@@ -76,6 +80,9 @@
     faq: (d) => (d.faq || []).map((f) =>
       "<details><summary>" + esc(f.pregunta) + "</summary>" + md(f.respuesta) + "</details>").join("\n"),
 
+    "privacidad-titulo": (d) => esc(d.titulo),
+    privacidad: (d) => (d.nota ? "<p><em>" + esc(d.nota) + "</em></p>" : "") + md(d.contenido, ""),
+
     sedes: (d) => (d.sedes || []).map((s) =>
       '<article class="sede"><div class="mapa-embed"><iframe src="' + esc(s.mapa_embed) + '" title="Mapa: ' + esc(s.nombre) + '" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>' +
         '<a class="mapa-abrir" href="' + esc(s.boton_maps) + '" target="_blank" rel="noopener">Abrir en Maps</a></div>' +
@@ -87,6 +94,7 @@
   const ARCHIVO = {
     "hero-titulo": "sitio", "hero-lista": "sitio", "cta-titulo": "sitio", "cta-texto": "sitio",
     problemas: "problemas", servicios: "servicios", resenas: "resenas", galeria: "galeria", faq: "faq", sedes: "sedes",
+    "privacidad-titulo": "privacidad", privacidad: "privacidad",
   };
 
   return { bloques, ARCHIVO, esc, waLink };
