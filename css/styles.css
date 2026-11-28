@@ -723,6 +723,7 @@ p { max-width: 62ch; }
   border-color: var(--morado);
 }
 .form-contacto textarea { resize: vertical; min-height: 90px; }
+.form-contacto__fila { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
 .form-contacto .btn { justify-content: center; margin-top: 4px; }
 .form-contacto__estado {
   font-size: 0.88rem;

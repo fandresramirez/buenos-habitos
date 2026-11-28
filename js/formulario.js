@@ -19,12 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
       nombre: form.nombre.value.trim(),
       telefono: form.telefono.value.trim(),
       correo: form.correo.value.trim(),
+      ciudad: form.ciudad.value.trim(),
+      sector: form.sector.value.trim(),
       edad: form.edad.value.trim(),
       mensaje: form.mensaje.value.trim(),
       _honey: form._honey.value, // trampa anti-spam: si trae algo, el backend lo descarta
     };
 
-    if (!datos.nombre || !datos.telefono || !datos.correo || !datos.edad || !datos.mensaje) {
+    if (!datos.nombre || !datos.telefono || !datos.correo || !datos.ciudad || !datos.sector || !datos.edad || !datos.mensaje) {
       estado.textContent = "Por favor completa todos los campos.";
       estado.dataset.estado = "error";
       return;
