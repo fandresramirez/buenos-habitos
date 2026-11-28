@@ -67,7 +67,7 @@ Estas cosas necesitan a Freak Design porque cambian la estructura del sitio:
 - Cambiar el **diseño**, los colores o el orden de las secciones
 - Agregar **secciones nuevas**
 - Cambiar las fotos del encabezado, de "Conoce a Marco" y de "¿Por qué Buenos Hábitos?"
-- Cambiar a **dónde llegan los mensajes del formulario** (hoy: buenoshabitos.uio@gmail.com, mediante FormSubmit)
+- Cambiar a **dónde llegan los mensajes del formulario** (hoy: buenoshabitos.uio@gmail.com, mediante el servidor de freak-design.com)
 
 ---
 

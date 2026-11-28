@@ -1,10 +1,9 @@
 /**
- * Envio del formulario de contacto (seccion CTA / WhatsApp) via FormSubmit.
- * El destino va en data-formsubmit del <form>: el correo del cliente o, una vez
- * activado, el identificador aleatorio que entrega FormSubmit (para no dejar el
- * correo visible en el codigo). El primer envio a un correo nuevo no llega como
- * mensaje: FormSubmit manda un enlace de activacion a ese correo.
- * No hay backend propio ni se guarda nada aqui. Si falla, se sugiere WhatsApp.
+ * Envio del formulario de contacto (seccion CTA / WhatsApp).
+ * Los datos van al backend de freak-design.com (URL en data-api del <form>),
+ * que los reenvia por correo a Buenos Habitos via Brevo. Funciona igual sin
+ * importar en que hosting este la pagina. No se guarda nada aqui.
+ * Si falla, se sugiere escribir por WhatsApp.
  */
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("form-contacto");
@@ -22,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
       correo: form.correo.value.trim(),
       edad: form.edad.value.trim(),
       mensaje: form.mensaje.value.trim(),
+      _honey: form._honey.value, // trampa anti-spam: si trae algo, el backend lo descarta
     };
 
     if (!datos.nombre || !datos.telefono || !datos.correo || !datos.edad || !datos.mensaje) {
@@ -35,23 +35,15 @@ document.addEventListener("DOMContentLoaded", () => {
     estado.textContent = "Enviando...";
 
     try {
-      const respuesta = await fetch("https://formsubmit.co/ajax/" + form.dataset.formsubmit, {
+      const respuesta = await fetch(form.dataset.api, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          _subject: `Buenos Hábitos — nuevo contacto de ${datos.nombre}`,
-          _template: "table",
-          _honey: form._honey.value, // trampa anti-spam: si trae algo, FormSubmit lo descarta
-          email: datos.correo, // FormSubmit lo usa como "responder a"
-          "Nombre": datos.nombre,
-          "Teléfono / WhatsApp": datos.telefono,
-          "Edad del perro": datos.edad,
-          "Mensaje": datos.mensaje,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(datos),
       });
 
       const resultado = await respuesta.json().catch(() => ({}));
-      if (!respuesta.ok || String(resultado.success) !== "true") throw new Error("envio no aceptado");
+      if (respuesta.status === 429) throw new Error(resultado.error || "Demasiados intentos.");
+      if (!respuesta.ok || !resultado.ok) throw new Error("envio no aceptado");
 
       estado.dataset.estado = "ok";
       estado.textContent = "¡Listo! Te contactaremos muy pronto.";
